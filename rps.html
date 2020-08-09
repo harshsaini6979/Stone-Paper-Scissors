@@ -1,0 +1,149 @@
+<html>
+    <head><title>Rock Paper Scissors</title>
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <style type="text/css">
+            body{
+                background-color: coral;
+                margin: 0;
+                padding: 0;
+                width: 1500px;
+                font-family: cursive;
+            }
+            #box{
+                background-color: #97430F;
+                height: 600px;
+                width: 1000px;
+                border: black 10px dotted;
+                margin-top: 20px;
+                margin-left: 450px;
+                border-radius: 50px;
+            }
+            #title{
+                margin-top: 50px;
+                margin-left: 400px;
+                width: 1200px;
+                height: 150px;
+                color: #421A3C;
+                font-size: 100px;
+                text-decoration: underline;
+            }
+            #reset{
+                height: 35px;
+                width: 100px;
+                border-radius: 10px;
+                margin-left: 450px;
+                transition-duration: 0.4s;
+                clear: both;
+                margin-top: 50px;
+                border: none;
+            }
+            #reset:hover{
+                background-color: green;
+                cursor: pointer;
+                color: white;
+                font-size: 20px;
+            }
+            img{
+                position: relative;
+                height: 150px;
+                width: 150px;
+            }
+            #one, #two, #three{
+                margin-left: 125px;
+                cursor: pointer;
+            }
+            #score{
+                border-color: black;
+                height: 150px;
+                width: 400px;
+                font-size: 100px;
+                text-align: center;
+                color: darkseagreen;
+                @font-face{
+                    font-family:'digital-clock-font';
+                    src: url('put_the_location_to_your_font.ttf or .otf');
+                }
+            }
+            #user, #score, #comp{
+                float: left;
+                margin-left: 40px;
+            }
+            #prmnt{
+                padding-top: 100px;
+                clear: both;
+                
+            }
+            #play{
+                margin-top: 20px;
+            }
+            #user{
+                margin-left: 90px;
+            }
+            #cmmnt{
+                margin-left: 280px;
+                height: 80px;
+                width: 400px;
+                font-size: 60px;
+                text-align: center;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="title">ROCK PAPER SCISSORS</div>
+        <div id="box">
+            <div id="cmmnt">...</div>
+            <div id="play">
+                <div id="userPlay"><img src="1.png" id="user"></div>
+                <div id="score">0 : 0</div>
+                <img src="1.png" id="comp">
+            </div>
+            <div id="prmnt">
+                <img src="1.png" id="one" class="image">
+                <img src="2.png" id="two" class="image">
+                <img src="3.png" id="three" class="image">
+                <button id="reset">RESET</button>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var u;
+            var cs=0;
+            var us=0;
+            $("#one").click(function(){
+                $("#user").attr("src","1.png");
+                u=1;
+            });
+            $("#two").click(function(){
+                $("#user").attr("src","2.png");
+                u=2;
+            });
+            $("#three").click(function(){
+                $("#user").attr("src","3.png");
+                u=3;
+            });
+            $(".image").click(function(){
+                var r;
+                r = Math.floor(Math.random()*3) + 1;
+                $("#comp").attr("src",r + ".png");
+                if((u==1 && r==1) || (u==2 && r==2) || (u==3 && r==3)){
+                    $("#cmmnt").html("Draw");
+                } else if ((u==1 && r==3) || (u==2 && r==1) || (u==3 && r==2)){
+                    us++;
+                    $("#score").html(us + " : " + cs);
+                    $("#cmmnt").html("You won");
+                } else{
+                    cs++;
+                    $("#score").html(us + " : " + cs);
+                    $("#cmmnt").html("You lost");
+                }
+            });
+            $("#reset").click(function(){
+                $('#score').html("0 : 0");
+                cs=0;
+                us=0;
+                $("#cmmnt").html("...");
+            });
+        </script>
+    </body>
+</html>
